@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPSS Training by Dr. Fred Monari</title>
+  <style>
+    :root{--navy:#102b46;--blue:#176b87;--teal:#2c9b91;--bg:#f3f7fa;--ink:#243747;--muted:#657789;--line:#dfe8ed;--white:#fff}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+    header{background:var(--navy);color:white;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+    .brand{font-weight:bold;font-size:20px}.brand small{display:block;font-size:12px;font-weight:normal;color:#c9dce7}
+    nav{display:flex;gap:16px;flex-wrap:wrap}nav a{color:white;text-decoration:none;font-size:13px}
+    .hero{padding:55px 7%;background:linear-gradient(120deg,#e7f2f5,#f7fafb);display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+    h1{font-size:clamp(32px,5vw,48px);line-height:1.15;color:var(--navy);margin:0 0 15px}h1 span{color:var(--teal)}
+    .hero p{color:var(--muted)}.panel{background:var(--navy);color:white;border-radius:13px;padding:25px}.panel li{margin:9px 0}
+    .section{padding:42px 7%}.section h2{color:var(--navy);margin:0 0 8px}.muted{color:var(--muted)}
+    .btn{display:inline-block;border:0;border-radius:6px;padding:11px 16px;background:var(--navy);color:white;text-decoration:none;cursor:pointer;font-weight:bold;font-size:13px;margin:4px 4px 4px 0}
+    .btn.teal{background:var(--teal)}.btn.light{background:#e8f1f4;color:var(--navy)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card,.box{background:white;border:1px solid var(--line);border-radius:10px;padding:20px}
+    .card h3{color:var(--blue);margin:7px 0}.tag{font-size:10px;letter-spacing:1px;color:var(--teal);font-weight:bold}
+    .layout{display:grid;grid-template-columns:270px 1fr;gap:18px;align-items:start}
+    .sidebar{position:sticky;top:12px}.sidebar button{display:block;width:100%;text-align:left;border:0;background:white;padding:12px;border-bottom:1px solid var(--line);cursor:pointer;color:var(--ink)}
+    .sidebar button.active{background:#e9f5f3;color:#116b67;font-weight:bold}
+    .lesson-content h3{color:var(--navy)}.lesson-content h4{margin-bottom:5px;color:var(--blue)}
+    .step{padding:10px 13px;border-left:3px solid var(--teal);background:#f4f8fa;margin:9px 0}
+    pre{white-space:pre-wrap;overflow-x:auto;background:#102b46;color:#c8f1e7;padding:15px;border-radius:8px;font-size:12px}
+    .callout{background:#edf6f4;border:1px solid #d2e9e3;border-radius:8px;padding:13px;margin:12px 0}
+    .student-bar{background:white;border:1px solid var(--line);border-radius:10px;padding:18px;margin:20px 7% 0}
+    .fields{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.fields input,.practical textarea{width:100%;padding:10px;border:1px solid #cbd8df;border-radius:6px;font:inherit}
+    .fields label{font-size:12px;color:var(--muted)}.fields input{display:block;margin-top:4px}
+    .quiz-q{border-bottom:1px solid var(--line);padding:12px 0}.quiz-q label{display:block;padding:5px 0;font-size:14px}
+    .notice{padding:12px;background:#fff7e6;border:1px solid #f2dfad;border-radius:8px;color:#765a13;font-size:13px}
+    .practical textarea{min-height:130px}.hidden{display:none!important}
+    footer{background:#091d30;color:white;text-align:center;padding:22px;font-size:12px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.sidebar{position:static}.sidebar button{display:inline-block;width:auto;border:1px solid var(--line);margin:3px;border-radius:6px}.fields{grid-template-columns:1fr}}
+    @media(max-width:560px){.grid{grid-template-columns:1fr}.section{padding:32px 5%}.hero{padding:40px 5%}header{padding:14px 5%}}
+  .data-table{width:100%;border-collapse:collapse;min-width:620px}.data-table th,.data-table td{border:1px solid #dce5ea;padding:9px;text-align:left}.data-table th{background:#102b46;color:white}\n</style>
+</head>
+<body>
+<header>
+  <div class="brand">SPSS TRAINING<small>by Dr. Fred Monari · IBM SPSS Statistics 27</small></div>
+  <nav><a href="#home">Home</a><a href="#learning">Learning modules</a><a href="#datasets">Datasets</a><a href="#assessment">Assessment</a><a href="#monitoring">Monitoring</a></nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <p class="tag">PRACTICAL STATISTICAL TRAINING</p>
+    <h1>Learn SPSS.<br><span>Analyse data.</span><br>Interpret results.</h1>
+    <p>A step-by-step learning platform for university students and researchers. Every topic uses simple explanations, SPSS Version 27 menu instructions, syntax examples, health and agricultural applications, and practice tasks.</p>
+    <a class="btn" href="#learning">Start learning</a><a class="btn teal" href="#datasets">Download practice data</a>
+  </div>
+  <div class="panel"><h3>Your learning pathway</h3><ol><li>Introduction to SPSS</li><li>Descriptive Statistics</li><li>Inferential Statistics</li></ol><p>Learn at your own pace. Revisit lessons and repeat quizzes whenever you wish.</p></div>
+</section>
+
+<section class="student-bar" id="studentProfile">
+  <h3 style="margin-top:0;color:#102b46">Student details for progress monitoring</h3>
+  <p class="muted" style="font-size:13px">No account or password is required. Enter these details to have your lesson activity, quiz attempts and practical submissions recorded. You may return and repeat activities without a limit.</p>
+  <div class="fields">
+    <label>Full name<input id="studentName" placeholder="e.g. Jane Achieng"></label>
+    <label>Registration number<input id="studentReg" placeholder="e.g. HSC/001/2026"></label>
+    <label>Email address<input id="studentEmail" type="email" placeholder="student@example.com"></label>
+  </div>
+  <p id="profileStatus" class="muted" style="font-size:12px">Your details are used only to identify your learning records in the lecturer's monitoring spreadsheet.</p>
+</section>
+
+<section class="section" id="learning">
+  <p class="tag">THE CURRICULUM</p><h2>Three complete learning modules</h2>
+  <p class="muted">Select a lesson. Work through the numbered steps in order. Open SPSS 27 on your computer and repeat the activity using the supplied dataset.</p>
+  <div class="layout">
+    <div class="box sidebar">
+      <h3 style="margin-top:0">Module lessons</h3>
+      <div id="lessonNav"></div>
+    </div>
+    <article class="box lesson-content" id="lessonDisplay">
+      <p class="muted">Choose a lesson from the left to begin.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="datasets">
+  <p class="tag">PRACTICAL LEARNING</p><h2>Health and agricultural datasets</h2>
+  <p class="muted">The datasets are simulated for teaching. They are not real patient records or farm observations.</p>
+  <div class="grid">
+    <div class="card"><h3>Health screening dataset</h3><p>Age, sex, BMI, systolic and diastolic blood pressure, fasting glucose and screening indicators. Use it for frequencies, descriptive statistics, t-tests, chi-square and correlation.</p><button class="btn" onclick="downloadDataset('health')">Download health CSV</button></div>
+    <div class="card"><h3>Agriculture field-trial dataset</h3><p>Maize variety, fertilizer, rainfall, soil pH, soil nitrogen, disease presence and yield. Use it for descriptive statistics, ANOVA, correlation and regression.</p><button class="btn" onclick="downloadDataset('agriculture')">Download agriculture CSV</button></div>
+    <div class="card"><h3>SPSS 27 syntax files</h3><p>Download syntax examples for both subject areas. Open the .sps file in the SPSS Syntax Editor and select Run → All.</p><button class="btn light" onclick="downloadSyntax('health')">Health syntax</button><button class="btn light" onclick="downloadSyntax('agriculture')">Agriculture syntax</button></div>
+  </div>
+  <div class="notice" style="margin-top:15px"><strong>SPSS 27 note:</strong> Menu wording can vary slightly by installation. The lessons identify the standard SPSS Statistics 27 menu path and provide equivalent syntax. This website teaches SPSS; it does not execute IBM SPSS inside the browser.</div>
+</section>
+
+<section class="section" id="assessment">
+  <p class="tag">KNOWLEDGE CHECKS</p><h2>Module assessments</h2>
+  <p class="muted">Each module has five conceptual questions and five applied questions. Submit as often as you wish. Every attempt is stored separately in the lecturer's monitoring sheet.</p>
+  <div class="box">
+    <label for="quizModule"><strong>Select module</strong></label>
+    <select id="quizModule" onchange="renderQuiz()" style="padding:9px;margin:8px;width:min(100%,340px)">
+      <option value="intro">Module 1 – Introduction to SPSS</option>
+      <option value="descriptive">Module 2 – Descriptive Statistics</option>
+      <option value="inferential">Module 3 – Inferential Statistics</option>
+    </select>
+    <div id="quizArea"></div>
+    <button class="btn teal" onclick="gradeQuiz()">Submit quiz attempt</button>
+    <div id="quizResult" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="section" id="practicals">
+  <p class="tag">LECTURER EVALUATION</p><h2>Submit a practical assignment</h2>
+  <p class="muted">Run the analysis in SPSS 27, then describe the procedure, key output and your interpretation below. Your work will be sent to the lecturer for review.</p>
+  <div class="box practical">
+    <label><strong>Module</strong></label><br>
+    <select id="practicalModule" style="padding:9px;margin:8px 0;width:100%">
+      <option value="intro">Module 1 – Introduction to SPSS</option><option value="descriptive">Module 2 – Descriptive Statistics</option><option value="inferential">Module 3 – Inferential Statistics</option>
+    </select><br>
+    <label><strong>Practical title</strong></label><br><input id="practicalTitle" style="width:100%;padding:10px;margin:8px 0;border:1px solid #cbd8df;border-radius:6px" placeholder="e.g. Descriptive analysis of blood pressure"><br>
+    <label><strong>Dataset used</strong></label><br>
+    <select id="practicalDataset" style="padding:9px;margin:8px 0;width:100%"><option>Health screening dataset</option><option>Agriculture field-trial dataset</option></select>
+    <label><strong>SPSS 27 procedure and findings</strong></label><textarea id="practicalFindings" placeholder="Write the menu path or syntax you used, report the important values from your output, and explain what the results mean. Do not submit names or other identifying information about real patients." style="width:100%;min-height:150px;padding:10px;margin-top:8px;border:1px solid #cbd8df;border-radius:6px"></textarea>
+    <button class="btn" onclick="sendPractical()">Submit for lecturer evaluation</button><span id="practicalStatus" class="muted"></span>
+  </div>
+</section>
+
+<section class="section" id="monitoring">
+  <p class="tag">LEARNING RECORDS</p><h2>Progress and repeat learning</h2>
+  <div class="box">
+    <p>Students can revisit any lesson and repeat any quiz. The monitoring workbook records each submitted activity, including the date, student identifier, module, lesson or quiz, score and attempt number.</p>
+    <p><strong>For students:</strong> there is no account, password, attempt limit or lockout.</p>
+    <p><strong>For the lecturer:</strong> the monitoring spreadsheet is private to the account that created it. Use the spreadsheet to review quiz attempts and practical submissions, then enter feedback and marks in the lecturer columns.</p>
+    <p class="notice">The monitoring workbook must not be shared publicly because it contains student names, registration numbers, email addresses and submitted work.</p>
+  </div>
+</section>
+
+
+<section class="section" id="studentProgress"><h2>My progress</h2>
+<p class="subtitle">Use the same registration number and email entered earlier to view your records. This is a convenience lookup, not identity verification.</p>
+<div class="resource"><button class="button" onclick="loadMyProgress()">View my progress</button><div id="myProgressResult"></div></div></section>
+<section class="section" id="lecturerDashboard"><h2>Lecturer dashboard</h2>
+<p class="subtitle">Restricted by a private lecturer access key. Keep this key confidential.</p>
+<div class="resource"><label>Lecturer access key <input id="lecturerKey" type="password" autocomplete="off"></label>
+<button class="button" onclick="loadLecturerDashboard()">Open dashboard</button><div id="lecturerDashboardResult"></div></div></section>
+
+<footer>SPSS Training by Dr. Fred Monari · IBM SPSS Statistics 27 · Practical training for students and researchers</footer>
+
+<script>
+// Handle in-page navigation inside the Apps Script web-app frame.
+// Do not change the frame URL hash; scroll directly to the target section.
+document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+  link.addEventListener('click', function(event) {
+    const targetId = link.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+const modules = [
+ {id:'intro',name:'Module 1: Introduction to SPSS',lessons:[
+  ['1.1','What is SPSS and what is it used for?','SPSS (Statistical Package for the Social Sciences) is software for managing data, carrying out statistical analyses and presenting results. It is used in health, agriculture, education, business and social research.',
+   ['Start IBM SPSS Statistics 27 from your computer.','The Data Editor opens. It contains Data View and Variable View.','Use File → New → Data to create a blank dataset.','Use File → Open → Data to open an existing .sav, Excel or CSV file.'],
+   'Health: a researcher records age, sex, BMI and blood pressure for a health survey. Agriculture: a researcher records maize variety, fertilizer treatment and yield from experimental plots.',
+   'The first task in any analysis is to understand the research question, identify the unit of observation and define what each variable represents.',
+   'GET FILE=\'C:\\\\SPSS_Training\\\\health_data.sav\'.\nDISPLAY DICTIONARY.\nEXECUTE.'],
+  ['1.2','The SPSS 27 Data Editor','The Data Editor is the main workspace. Data View displays observations; Variable View describes the variables. Each row normally represents one case and each column one variable.',
+   ['Open SPSS 27.','Click Data View at the bottom to inspect the data grid.','Click Variable View to inspect Name, Type, Width, Decimals, Label, Values, Missing, Columns, Align and Measure.','Return to Data View to enter observations.'],
+   'Health: one row per participant. Agriculture: one row per experimental plot. Do not put two participants or plots in one row.',
+   'Cases are rows and variables are columns. Keep one clearly defined observational unit in each row.',
+   '* Create and label variables in Variable View.\nDISPLAY DICTIONARY.'],
+  ['1.3','Create variables in Variable View','A variable needs a short name, suitable type, descriptive label and correct measurement level. SPSS variable names should begin with a letter and should not contain spaces.',
+   ['In Variable View, enter a name such as Age.','Set Type to Numeric for measurements and codes.','Use Label to write a full description, for example Age in completed years.','Use Values to define category codes.','Set Measure to Nominal, Ordinal or Scale as appropriate.'],
+   'Health: Sex (1=Male, 2=Female) is nominal; pain severity (1=Mild, 2=Moderate, 3=Severe) is ordinal; BMI is scale. Agriculture: Variety is nominal; disease severity categories may be ordinal; yield is scale.',
+   'A numeric code does not automatically make a variable scale. The measurement level depends on what the values mean.',
+   'VARIABLE LABELS Age "Age in completed years" BMI "Body mass index".\nVALUE LABELS Sex 1 "Male" 2 "Female".\nVARIABLE LEVEL Sex (NOMINAL) Age BMI (SCALE).'],
+  ['1.4','Data types and measurement levels','Numeric variables contain numbers; string variables contain text. Nominal variables are categories without order, ordinal variables have a meaningful order, and scale variables are measured numerically.',
+   ['Identify whether each field is numeric or text.','For a category, decide whether categories have an order.','In Variable View, select the appropriate Measure setting.','Check that dates, decimal places and category codes are correctly defined.'],
+   'Health: blood group is nominal; disease stage may be ordinal; systolic blood pressure is scale. Agriculture: fertilizer type is nominal; crop quality grade may be ordinal; rainfall is scale.',
+   'Choose analyses according to the variable type and research question. A code such as 1, 2, 3 may still represent categories.',
+   'VARIABLE LEVEL BloodGroup (NOMINAL) DiseaseStage (ORDINAL) SystolicBP (SCALE).'],
+  ['1.5','Enter, edit and label data','Enter one case per row. Use value labels to make coded categories easier to read. Check for typing errors and impossible values before analysis.',
+   ['Open a blank Data Editor.','Define variables in Variable View.','Return to Data View and type one observation per row.','Use Data → Sort Cases to inspect ordering if needed.','Use Analyze → Descriptive Statistics → Frequencies to check categorical codes.'],
+   'Health: enter ten fictional participants with Age and Sex. Agriculture: enter ten plots with Variety, Fertilizer and Yield.',
+   'A data entry check should identify invalid codes, duplicate identifiers and values outside plausible ranges.',
+   'FREQUENCIES VARIABLES=Sex.\nDESCRIPTIVES VARIABLES=Age BMI SystolicBP.'],
+  ['1.6','Import Excel and CSV files','SPSS can read common spreadsheet and text formats. The first row should contain variable names when you select that option in the import wizard.',
+   ['Choose File → Open → Data.','Change the file type to Excel or CSV/text as required.','Select the file.','In the import dialog, indicate whether the first row contains variable names.','Review variable names and types after import.','Save a working copy as an SPSS .sav file.'],
+   'Import the health screening CSV and the agriculture field-trial CSV supplied on this website.',
+   'Always verify that numeric columns imported as numeric and that category codes have not been read as text.',
+   'GET DATA\n /TYPE=TXT\n /FILE="C:\\\\SPSS_Training\\\\health_screening_teaching.csv"\n /DELCASE=LINE\n /DELIMITERS=","\n /ARRANGEMENT=DELIMITED\n /FIRSTCASE=2\n /IMPORTCASE=ALL.\nEXECUTE.'],
+  ['1.7','Missing values and data cleaning','Missing data should be identified and documented. A missing value is not the same as zero. Check duplicates, ranges, category codes and inconsistent entries.',
+   ['Use Analyze → Descriptive Statistics → Frequencies to inspect categories.','Use Analyze → Descriptive Statistics → Descriptives to inspect minimum and maximum values.','Use Data → Identify Duplicate Cases to check repeated identifiers.','In Variable View, define user-missing codes only when justified by the study protocol.','Keep an unchanged copy of the original data.'],
+   'Health: a blank blood pressure reading is missing, not zero. Agriculture: a plot with no recorded yield should not automatically be assigned zero yield.',
+   'Report how much data is missing and explain any exclusions or recoding decisions.',
+   'FREQUENCIES VARIABLES=Sex Hypertension.\nDESCRIPTIVES VARIABLES=Age BMI SystolicBP Yield_t_ha.'],
+  ['1.8','Save files, syntax and output','Save the data file (.sav), syntax file (.sps) and output file (.spv) separately so that the work can be checked and repeated.',
+   ['Choose File → Save As to save the dataset as .sav.','Open File → New → Syntax to create a syntax file.','Paste commands and save the syntax as .sps.','Run selected commands or Run → All.','In the Output Viewer, choose File → Save As to save output as .spv.'],
+   'Create a folder for the health practical and another for the agricultural practical. Save data, syntax and output together in each folder.',
+   'A reproducible analysis includes the dataset version, syntax, output and a short explanation of decisions.',
+   'SAVE OUTFILE="C:\\\\SPSS_Training\\\\health_working.sav".\n* Save syntax separately from the Syntax Editor.']
+ ]},
+ {id:'descriptive',name:'Module 2: Descriptive Statistics',lessons:[
+  ['2.1','Plan a descriptive analysis','Descriptive statistics summarise the observed sample. Choose summaries according to the variable type and distribution.',
+   ['Identify the unit of analysis and research question.','Classify each variable as nominal, ordinal or scale.','Use counts and percentages for categorical variables.','Use mean and standard deviation for approximately symmetric scale data; consider median and quartiles for skewed data.','Choose graphs that match the variable.'],
+   'Health: describe age, sex, BMI and blood pressure. Agriculture: describe variety, fertilizer, rainfall, soil pH and yield.',
+   'Describe the sample before conducting inferential tests. Do not use a mean for nominal categories.',
+   'FREQUENCIES VARIABLES=Sex Hypertension.\nEXAMINE VARIABLES=BMI SystolicBP /PLOT=HISTOGRAM BOXPLOT /STATISTICS=DESCRIPTIVES.'],
+  ['2.2','Frequencies and percentages','A frequency table reports the number of observations in each category. Percent is based on all cases; Valid Percent excludes missing cases.',
+   ['Choose Analyze → Descriptive Statistics → Frequencies.','Move categorical variables into the Variable(s) box.','Keep Display frequency tables selected.','Click Statistics if you need mode or percentiles.','Click Charts to request a bar chart or pie chart.','Click OK and inspect the Output Viewer.'],
+   'Health: frequency of sex and hypertension screening status. Agriculture: frequency of maize variety, fertilizer type and disease presence.',
+   'State both count and percentage, and make clear whether the denominator includes missing values.',
+   'FREQUENCIES VARIABLES=Sex Hypertension\n /ORDER=ANALYSIS.'],
+  ['2.3','Mean, median and mode','Mean is the arithmetic average; median is the middle ordered value; mode is the most frequent value. Outliers can pull the mean away from the centre.',
+   ['Choose Analyze → Descriptive Statistics → Frequencies.','Move the variable to the Variable(s) box.','Click Statistics and select Mean, Median and Mode.','Click Continue, then OK.','Compare the three measures and inspect the distribution.'],
+   'Health: mean and median BMI. Agriculture: mean and median maize yield.',
+   'For a strongly skewed variable, median and interquartile range may describe the centre and spread better than mean and standard deviation.',
+   'FREQUENCIES VARIABLES=BMI Yield_t_ha\n /STATISTICS=MEAN MEDIAN MODE.'],
+  ['2.4','Range, variance and standard deviation','Range is maximum minus minimum. Variance measures squared dispersion around the mean. Standard deviation is the square root of variance and is expressed in the original units.',
+   ['Choose Analyze → Descriptive Statistics → Descriptives.','Move scale variables to the Variables box.','Click Options.','Select Mean, Std. deviation, Variance, Range, Minimum and Maximum.','Click Continue and OK.'],
+   'Health: standard deviation of systolic blood pressure. Agriculture: standard deviation of yield.',
+   'A larger standard deviation indicates greater spread around the mean, but comparisons should consider the units and scale.',
+   'DESCRIPTIVES VARIABLES=Age BMI SystolicBP Yield_t_ha\n /STATISTICS=MEAN STDDEV VARIANCE RANGE MIN MAX.'],
+  ['2.5','Quartiles, percentiles and interquartile range','Quartiles divide ordered data into four parts. The interquartile range (IQR) is Q3 minus Q1 and describes the spread of the middle half of observations.',
+   ['Choose Analyze → Descriptive Statistics → Explore.','Place a scale variable in Dependent List.','Click Statistics and ensure Descriptives is selected.','Click Plots to request boxplots if useful.','Click OK and inspect percentiles in the output.'],
+   'Health: quartiles of BMI. Agriculture: quartiles of crop yield.',
+   'Report median and Q1–Q3 or median and IQR when the distribution is skewed.',
+   'EXAMINE VARIABLES=BMI Yield_t_ha\n /STATISTICS=DESCRIPTIVES\n /PLOT=BOXPLOT\n /PERCENTILES(25,50,75).'],
+  ['2.6','Explore distributions and outliers','A histogram shows the shape of a scale variable. A boxplot displays the median, quartiles and potential outliers. Investigate unusual values rather than deleting them automatically.',
+   ['Choose Analyze → Descriptive Statistics → Explore.','Place the scale variable in Dependent List.','Click Plots and select Histogram and Boxplots as appropriate.','Click Continue and OK.','Check whether unusual points are data errors or valid observations.'],
+   'Health: inspect systolic blood pressure and BMI. Agriculture: inspect yield and seasonal rainfall.',
+   'An outlier is not automatically an error. Document any correction or exclusion and retain the original data.',
+   'EXAMINE VARIABLES=SystolicBP Yield_t_ha\n /PLOT=HISTOGRAM BOXPLOT\n /STATISTICS=DESCRIPTIVES.'],
+  ['2.7','Charts: bar, pie and histogram','Bar charts compare categories; pie charts show parts of a whole; histograms show the distribution of a scale variable. Avoid using a histogram for nominal categories.',
+   ['For a bar chart, choose Graphs → Chart Builder.','Choose Bar and drag a simple bar chart to the canvas.','Drag the categorical variable to the x-axis.','For a histogram, choose Histogram and place a scale variable on the x-axis.','Click OK to create the chart.'],
+   'Health: bar chart of hypertension status. Agriculture: histogram of yield and bar chart of fertilizer type.',
+   'Include a clear title, units and category labels. Do not imply causation from a descriptive chart.',
+   'GRAPH /BAR(SIMPLE)=COUNT BY Fertilizer.\nGRAPH /HISTOGRAM=Yield_t_ha.'],
+  ['2.8','Crosstabs and grouped summaries','Crosstabs show the joint distribution of two categorical variables. Row and column percentages help compare groups.',
+   ['Choose Analyze → Descriptive Statistics → Crosstabs.','Place one variable in Row(s) and the other in Column(s).','Click Cells and select Observed, Row percentages and Column percentages.','For a chi-square test, click Statistics and select Chi-square.','Click OK and interpret counts and percentages first.'],
+   'Health: sex by hypertension status. Agriculture: maize variety by disease presence.',
+   'Check expected cell counts before relying on the chi-square approximation. Combine categories only when scientifically justified.',
+   'CROSSTABS\n /TABLES=Sex BY Hypertension\n /CELLS=COUNT ROW COLUMN\n /STATISTICS=CHISQ.'],
+  ['2.9','Write a descriptive results paragraph','A results paragraph identifies the sample, reports suitable summaries with units and explains the main pattern without overstating the findings.',
+   ['State the number of observations analysed and any missing data.','Report counts and percentages for categorical variables.','Report mean and standard deviation or median and quartiles for scale variables.','Refer to the relevant table or figure.','Use units and sensible decimal places.'],
+   'Health: describe the distribution of BMI and blood pressure in the sample. Agriculture: describe yield by fertilizer group.',
+   'Example format: “The mean systolic blood pressure was XX mmHg (SD XX).” Replace XX with values from your actual SPSS output.',
+   'Use the output values from your own dataset; do not copy illustrative values as research findings.']
+ ]},
+ {id:'inferential',name:'Module 3: Inferential Statistics',lessons:[
+  ['3.1','From samples to populations','Inferential statistics use sample information to estimate population quantities or test hypotheses. Sampling design and data quality affect how far results can be generalised.',
+   ['Define the target population.','Identify the sample and sampling method.','Identify the parameter of interest, such as a population mean or proportion.','Choose a method that matches the outcome, design and assumptions.'],
+   'Health: estimate mean systolic blood pressure in a defined population. Agriculture: estimate mean yield under a specified production condition.',
+   'A p-value does not repair biased sampling or poor measurement. Generalisation depends on the study design.',
+   '* Identify the target population and sampling design before analysis.'],
+  ['3.2','Null and alternative hypotheses, alpha and p-values','The null hypothesis represents a specified reference claim. The alternative represents the difference or association being investigated. Alpha is the preselected significance level.',
+   ['Write H0 and H1 before looking at the test result.','Choose a significance level, commonly 0.05, before analysis.','Run the selected test.','Read the p-value and confidence interval.','Report the statistic, degrees of freedom where relevant, p-value and effect estimate.'],
+   'Health: H0: mean systolic BP is equal in two independent groups. Agriculture: H0: mean yield is equal across fertilizer groups.',
+   'A p-value is not the probability that H0 is true. Statistical significance does not necessarily mean practical importance.',
+   '* Set the hypotheses and alpha before running the test.'],
+  ['3.3','One-sample t-test','A one-sample t-test compares a sample mean with a specified reference value. The outcome should be scale and observations should be independent.',
+   ['Choose Analyze → Compare Means → One-Sample T Test.','Move the scale outcome to Test Variable(s).','Enter the Test Value.','Click Options to set the confidence interval if required.','Click OK and inspect the one-sample test table.'],
+   'Health: compare sample mean systolic BP with a specified reference mean for an exercise. Agriculture: compare mean yield with a benchmark value.',
+   'Report sample mean, t statistic, degrees of freedom, p-value and confidence interval. Explain whether the difference is meaningful in context.',
+   'T-TEST\n /TESTVAL=120\n /VARIABLES=SystolicBP\n /CRITERIA=CI(.95).'],
+  ['3.4','Independent-samples t-test','This test compares the means of a scale outcome between two independent groups. Check the group definition and inspect the variance equality information.',
+   ['Choose Analyze → Compare Means → Independent-Samples T Test.','Move the scale outcome to Test Variable(s).','Move the two-category grouping variable to Grouping Variable.','Click Define Groups and enter the two codes, for example 1 and 2.','Click Continue and OK.','Use the appropriate row based on the variance test and report the result.'],
+   'Health: compare systolic BP by sex (two independent groups). Agriculture: compare yield between two selected treatment groups, if the research design supports it.',
+   'Check independence, outliers and distributional assumptions. Levene’s test informs the variance row; it is not a test of mean difference.',
+   'T-TEST GROUPS=Sex(1 2)\n /VARIABLES=SystolicBP\n /CRITERIA=CI(.95).'],
+  ['3.5','Paired-samples t-test','A paired t-test compares two measurements from the same units, such as before and after intervention. Analyse the within-pair differences.',
+   ['Arrange the data with one row per participant or experimental unit.','Create separate columns for before and after measurements.','Choose Analyze → Compare Means → Paired-Samples T Test.','Select the two related variables as a pair.','Click OK and inspect the Paired Samples Test table.'],
+   'Health: blood pressure before and after a programme in the same participants. Agriculture: plot measurements before and after a treatment only when measurements are genuinely paired.',
+   'Do not use a paired test for two unrelated groups. Report the mean paired difference and its confidence interval.',
+   'T-TEST PAIRS=BP_Before WITH BP_After (PAIRED)\n /CRITERIA=CI(.95).'],
+  ['3.6','One-way ANOVA','One-way ANOVA compares the means of a scale outcome across three or more independent groups. If the overall test is significant, suitable post-hoc comparisons can identify which groups differ.',
+   ['Choose Analyze → Compare Means → One-Way ANOVA.','Move the scale outcome to Dependent List.','Move the categorical group variable to Factor.','Click Options and select Descriptive and Homogeneity of variance test.','Click Post Hoc and select an appropriate method such as Tukey when assumptions are suitable.','Click OK and inspect ANOVA and post-hoc tables.'],
+   'Agriculture: compare maize yield across None, Organic and NPK fertilizer groups. Health: compare mean BMI across three age groups if groups are independently defined.',
+   'Check independence and residual assumptions. Consider Welch ANOVA when equal variances are not reasonable; choose post-hoc methods accordingly.',
+   'ONEWAY Yield_t_ha BY Fertilizer\n /STATISTICS DESCRIPTIVES HOMOGENEITY\n /POSTHOC=TUKEY ALPHA(.05).'],
+  ['3.7','Pearson and Spearman correlation','Correlation measures the strength and direction of association. Pearson correlation is for a linear relationship between scale variables; Spearman is rank-based and can be useful for ordinal or monotonic relationships.',
+   ['Choose Analyze → Correlate → Bivariate.','Move the variables into the Variables box.','Select Pearson or Spearman as justified.','Choose two-tailed significance unless a directional hypothesis was specified in advance.','Click OK and inspect r, significance and sample size.','Create a scatterplot to inspect form and outliers.'],
+   'Health: BMI and systolic BP. Agriculture: seasonal rainfall and yield.',
+   'Correlation does not establish causation. Inspect scatterplots and consider confounding variables.',
+   'CORRELATIONS\n /VARIABLES=BMI SystolicBP\n /PRINT=TWOTAIL\n /MISSING=PAIRWISE.\n* Spearman example:\nNONPAR CORR\n /VARIABLES=BMI SystolicBP\n /PRINT=SPEARMAN TWOTAIL.'],
+  ['3.8','Chi-square test of association','Pearson chi-square tests whether two categorical variables are associated. Review expected cell counts and the sampling design.',
+   ['Choose Analyze → Descriptive Statistics → Crosstabs.','Place one categorical variable in Rows and the other in Columns.','Click Statistics and select Chi-square.','Click Cells and select Observed, Expected and row or column percentages.','Click OK.','Review the Chi-Square Tests table and expected counts.'],
+   'Health: sex and hypertension screening status. Agriculture: maize variety and disease presence.',
+   'If expected counts are too small, consider an exact test or a scientifically defensible alternative. Do not interpret association as causation.',
+   'CROSSTABS\n /TABLES=Sex BY Hypertension\n /STATISTICS=CHISQ\n /CELLS=COUNT EXPECTED ROW.'],
+  ['3.9','Simple linear regression','Linear regression models a continuous outcome using one or more predictors. Interpret the coefficient, confidence interval, model fit and residual diagnostics.',
+   ['Choose Analyze → Regression → Linear.','Move the outcome to Dependent.','Move the predictor to Independent(s).','Click Statistics and select estimates, model fit and confidence intervals.','Click Plots to examine standardised residuals against predicted values.','Click OK and inspect Model Summary, ANOVA and Coefficients.'],
+   'Agriculture: predict yield from seasonal rainfall. Health: examine the association between age and systolic BP.',
+   'A regression coefficient is an adjusted or unadjusted association according to the predictors included. Check linearity, independence, constant variance and influential observations.',
+   'REGRESSION\n /DEPENDENT Yield_t_ha\n /METHOD=ENTER SeasonalRainfall_mm\n /STATISTICS COEFF R ANOVA CI(95).'],
+  ['3.10','Multiple linear regression','Multiple regression estimates the relationship between a continuous outcome and several predictors entered together. Coefficients are interpreted holding the other included predictors constant.',
+   ['Choose Analyze → Regression → Linear.','Place the continuous outcome in Dependent.','Add relevant predictors to Independent(s).','Select confidence intervals and collinearity diagnostics where appropriate.','Inspect coefficients, model fit and residual diagnostics.','Explain the meaning and limitations of the model.'],
+   'Agriculture: yield predicted by rainfall and soil nitrogen. Health: systolic BP predicted by age and BMI.',
+   'Check multicollinearity, model specification and residual assumptions. Association does not prove causation.',
+   'REGRESSION\n /DEPENDENT Yield_t_ha\n /METHOD=ENTER SeasonalRainfall_mm SoilNitrogen_mgkg\n /STATISTICS COEFF R ANOVA CI(95) COLLIN.'],
+  ['3.11','Assumptions, confidence intervals and effect size','Assumptions are method-specific. Confidence intervals show a range of values compatible with the data and model. Effect sizes help describe magnitude, not only statistical significance.',
+   ['Identify the assumptions of the selected test before running it.','Use plots and diagnostic statistics rather than relying on one test alone.','Report a confidence interval and an appropriate effect size where possible.','Consider the study design, measurement quality and sample size.'],
+   'Health: report mean BP difference and confidence interval. Agriculture: report yield differences between fertilizer treatments and an effect-size measure where suitable.',
+   'A non-significant result does not prove there is no effect. Interpret precision and practical importance.',
+   '* Always inspect assumptions and report estimates with uncertainty.'],
+  ['3.12','Write and report inferential findings','A good report names the test, gives the estimate and uncertainty, reports the test statistic and p-value, and interprets the result in relation to the research question.',
+   ['State the research question and hypotheses.','Name the statistical procedure and relevant assumptions.','Report group summaries or model estimates.','Report the test statistic, degrees of freedom, p-value and confidence interval as appropriate.','Give a plain-language conclusion and avoid causal claims unless the design supports them.'],
+   'Health: report whether the sample provides evidence of a difference in mean BP between groups. Agriculture: report whether yield differs across fertilizer treatments.',
+   'Use actual SPSS output. Never invent statistics or write “p=0.000”; report very small values as p<.001.',
+   '* Use the values from the SPSS Output Viewer. Report estimates, confidence intervals and p-values accurately.']
+ ]}
+];
+
+const quizzes = {
+ intro:[
+ ['THEORY · Which SPSS window defines variable properties?',['Data View','Variable View','Output Viewer'],1,'Variable View stores variable names, types, labels and measurement levels.'],
+ ['THEORY · In Data View, each row normally represents:',['A variable','A case or observation','A value label'],1,'Each row is one case and each column is one variable.'],
+ ['THEORY · Categories without a natural order are:',['Nominal','Ordinal','Scale'],0,'Nominal categories have no meaningful ranking.'],
+ ['THEORY · The usual SPSS data-file extension is:',['.docx','.sav','.pptx'],1,'SPSS Statistics data files commonly use .sav.'],
+ ['THEORY · A variable label is used to:',['Describe the variable','Delete missing values','Run a t-test'],0,'A label provides a readable description.'],
+ ['APPLICATION · There are 36 participants, one per row. How many cases?',['18','36','72'],1,'There are 36 cases because each participant is one row.'],
+ ['APPLICATION · Sex coded 1=Male and 2=Female is measured at which level?',['Scale','Nominal','Continuous'],1,'These are category codes, not measurements.'],
+ ['APPLICATION · A dataset has 5 variables. Excluding an ID field, how many data columns?',['5','40','45'],0,'One column is used for each variable.'],
+ ['APPLICATION · A blank glucose result is coded as zero by mistake. Best action?',['Keep zero','Treat as missing and document it','Replace all missing values with mean'],1,'Missing is not the same as zero.'],
+ ['APPLICATION · Which is a scale measurement?',['Maize variety','Fertilizer type','Yield in tonnes/ha'],2,'Yield is a quantitative measurement.']
+ ],
+ descriptive:[
+ ['THEORY · Which summary suits a nominal variable?',['Mean','Frequency and percentage','Standard deviation only'],1,'Categorical variables are described using counts and percentages.'],
+ ['THEORY · The arithmetic average is the:',['Mean','Median','Mode'],0,'The mean is the sum divided by the number of values.'],
+ ['THEORY · Which measure is less affected by extreme values?',['Mean','Median','Range'],1,'The median is resistant to extreme observations.'],
+ ['THEORY · Standard deviation describes:',['Spread around the mean','Most common category','Sample size only'],0,'Standard deviation measures dispersion around the mean.'],
+ ['THEORY · Which graph displays a scale-variable distribution?',['Histogram','Pie chart','Map'],0,'A histogram displays the distribution of quantitative data.'],
+ ['CALCULATION · BMI values are 20, 22, 24 and 26. What is the mean?',['22','23','24'],1,'Mean=(20+22+24+26)/4=23.'],
+ ['CALCULATION · Ordered values are 3, 5, 7, 9 and 11. What is the median?',['5','7','9'],1,'The middle, third value is 7.'],
+ ['CALCULATION · Minimum yield is 1.8 and maximum is 6.3 tonnes/ha. Range?',['4.5','8.1','3.5'],0,'Range=6.3−1.8=4.5 tonnes/ha.'],
+ ['CALCULATION · 12 of 40 farmers use organic fertilizer. Percentage?',['20%','30%','40%'],1,'(12/40)×100=30%.'],
+ ['CALCULATION · For values 2, 4 and 6, sample standard deviation?',['1','2','4'],1,'Mean=4; sample variance=(4+0+4)/2=4; SD=√4=2.']
+ ],
+ inferential:[
+ ['THEORY · The null hypothesis is denoted by:',['H0','H1','SD'],0,'H0 is the null hypothesis.'],
+ ['THEORY · A p-value is:',['Probability H0 is true','Probability of data this extreme under the null model','The sample mean'],1,'It is calculated assuming the null model is true.'],
+ ['THEORY · Which test compares means across three or more independent groups?',['One-way ANOVA','One-sample t-test','Frequencies'],0,'One-way ANOVA compares means across multiple groups.'],
+ ['THEORY · Which test examines association between two categorical variables?',['Chi-square','Pearson correlation','Descriptives'],0,'Pearson chi-square is used with categorical contingency tables.'],
+ ['THEORY · Does correlation alone prove causation?',['Yes','No','Only if p<.05'],1,'Correlation describes association, not causation.'],
+ ['APPLICATION · A test gives p=.03 and alpha=.05. Decision?',['Reject H0','Fail to reject H0','Prove H1'],0,'Because .03 is below .05, reject H0 at the 5% level.'],
+ ['APPLICATION · Three fertilizer groups have means 2, 4 and 5. Which test?',['Independent t-test','One-way ANOVA','Chi-square'],1,'One-way ANOVA compares three independent group means.'],
+ ['APPLICATION · If r=−0.80, what does the sign indicate?',['Positive association','Negative linear association','No association'],1,'The negative sign indicates an inverse association.'],
+ ['APPLICATION · Yield=1.5+0.004×Rainfall. Predicted yield at 500 mm?',['2.0','3.5','4.5'],1,'1.5+0.004(500)=3.5 tonnes/ha.'],
+ ['APPLICATION · A 95% CI for a mean difference is (1.2,4.8). Does it contain zero?',['Yes','No','Cannot tell'],1,'Zero is outside the interval.']
+ ]
+};
+
+let currentStudent = null;
+let currentModule = null;
+let currentLesson = null;
+
+function studentDetails(){
+  const student={name:document.getElementById('studentName').value.trim(),reg:document.getElementById('studentReg').value.trim(),email:document.getElementById('studentEmail').value.trim()};
+  if(!student.name||!student.reg||!student.email){alert('Please enter your full name, registration number and email in the Student details section before recording progress.');document.getElementById('studentProfile').scrollIntoView({behavior:'smooth'});throw new Error('Student details missing');}
+  return student;
+}
+function serverCall(fn,payload,successMsg){
+  const status=document.getElementById('profileStatus');
+  status.textContent='Saving your activity...';
+  google.script.run.withSuccessHandler(r=>{status.textContent=(r&&r.message)||successMsg||'Saved.';})
+    .withFailureHandler(e=>{status.textContent='Could not save: '+e.message;alert('The activity could not be saved. '+e.message);})[fn](payload);
+}
+function renderNavigation(){
+  const nav=document.getElementById('lessonNav');
+  nav.innerHTML='';
+  modules.forEach(m=>{
+    const heading=document.createElement('div');heading.className='tag';heading.style.padding='12px 8px 5px';heading.textContent=m.name;nav.appendChild(heading);
+    m.lessons.forEach((l,i)=>{
+      const b=document.createElement('button');b.textContent=l[0]+' '+l[1];b.onclick=()=>openLesson(m.id,i,b);nav.appendChild(b);
+    });
+  });
+}
+function openLesson(moduleId,index,button){
+  const m=modules.find(x=>x.id===moduleId),l=m.lessons[index];
+  currentModule=m;currentLesson=l;
+  document.querySelectorAll('.sidebar button').forEach(b=>b.classList.remove('active'));if(button)button.classList.add('active');
+  const html=`<p class="tag">${m.name} · LESSON ${l[0]}</p><h2>${l[1]}</h2>
+  <h3>What you will learn</h3><p>${l[2]}</p>
+  <h3>Step-by-step in SPSS 27</h3>${l[3].map((s,i)=>`<div class="step"><strong>Step ${i+1}.</strong> ${s}</div>`).join('')}
+  <h3>Health and agricultural applications</h3><div class="callout">${l[4]}</div>
+  <h3>How to interpret your work</h3><p>${l[5]}</p>
+  <h3>SPSS syntax example</h3><pre>${escapeHtml(l[6])}</pre>
+  <p class="notice">Practice tip: run the menu procedure first, then run the syntax and compare the output. Save your syntax and output for your records.</p>
+  <button class="btn teal" onclick="markLessonComplete('${m.id}','${l[0]}','${escapeAttr(l[1])}')">Mark lesson completed</button>`;
+  document.getElementById('lessonDisplay').innerHTML=html;
+  try{serverCall('recordProgress',{student:studentDetails(),moduleId:m.id,moduleName:m.name,lessonId:l[0],lessonTitle:l[1],activity:'Lesson',status:'Opened'});}
+  catch(e){}
+}
+function markLessonComplete(moduleId,lessonId,lessonTitle){
+  const m=modules.find(x=>x.id===moduleId);
+  try{serverCall('recordProgress',{student:studentDetails(),moduleId,moduleName:m.name,lessonId,lessonTitle,activity:'Lesson',status:'Completed'});alert('Lesson completion recorded. You can revisit this lesson as many times as you wish.');}catch(e){}
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escapeAttr(s){return escapeHtml(s).replace(/`/g,'&#96;');}
+function renderQuiz(){
+ const id=document.getElementById('quizModule').value,qs=quizzes[id];
+ document.getElementById('quizArea').innerHTML='<p class="muted">10 questions: 5 theory and 5 calculation/application. Unlimited attempts.</p>'+
+ qs.map((q,i)=>`<div class="quiz-q"><strong>Q${i+1}. ${escapeHtml(q[0])}</strong>${q[1].map((a,j)=>`<label><input type="radio" name="quiz${i}" value="${j}"> ${String.fromCharCode(65+j)}. ${escapeHtml(a)}</label>`).join('')}</div>`).join('');
+ document.getElementById('quizResult').textContent='';
+}
+function gradeQuiz(){
+ const id=document.getElementById('quizModule').value,qs=quizzes[id],answers={};let score=0,missing=0;
+ qs.forEach((q,i)=>{const el=document.querySelector(`input[name="quiz${i}"]:checked`);if(!el)missing++;else{answers['Q'+(i+1)]=Number(el.value);if(Number(el.value)===q[2])score++;}});
+ if(missing){alert('Please answer all 10 questions before submitting.');return;}
+ const m=modules.find(x=>x.id===id),result=document.getElementById('quizResult');
+ const review=qs.map((q,i)=>{const a=answers['Q'+(i+1)];return `<div class="lesson-content show"><strong>Q${i+1}: ${a===q[2]?'Correct':'Review'}</strong><br>Your answer: ${escapeHtml(q[1][a])}<br>Correct answer: ${escapeHtml(q[1][q[2]])}<br>${escapeHtml(q[3])}</div>`;}).join('');
+ result.innerHTML=`<div class="resource"><strong>Score: ${score}/10 (${score*10}%).</strong><br>${score>=7?'Good work.':'Review the explanations and try again. There is no attempt limit.'}<br><span id="quizSaveStatus">Saving attempt...</span></div><h3>Answer explanations</h3>${review}`;
+ try{google.script.run.withSuccessHandler(r=>{document.getElementById('quizSaveStatus').textContent=r.message+' Attempt number: '+r.attemptNumber;})
+ .withFailureHandler(e=>{document.getElementById('quizSaveStatus').textContent='Save failed: '+e.message;})
+ .submitQuiz({student:studentDetails(),moduleId:id,moduleName:m.name,score,maxScore:10,answers});}
+ catch(e){document.getElementById('quizSaveStatus').textContent=e.message;}
+}
+function sendPractical(){
+  let student;try{student=studentDetails();}catch(e){return;}
+  const moduleId=document.getElementById('practicalModule').value,m=modules.find(x=>x.id===moduleId);
+  const payload={student,moduleId,moduleName:m.name,title:document.getElementById('practicalTitle').value,dataset:document.getElementById('practicalDataset').value,procedure:'IBM SPSS Statistics 27',findings:document.getElementById('practicalFindings').value};
+  const status=document.getElementById('practicalStatus');status.textContent='Submitting...';
+  google.script.run.withSuccessHandler(r=>{status.textContent=r.message;document.getElementById('practicalFindings').value='';})
+    .withFailureHandler(e=>{status.textContent='Submission failed: '+e.message;}).submitPractical(payload);
+}
+function csvDownload(filename,rows){
+  const csv=rows.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function downloadDataset(type){
+  const raw = type === 'health'
+    ? `ID,Sex,Age,BMI,SystolicBP,DiastolicBP,FastingGlucose,Hypertension,ElevatedGlucose
+1,1,56,21.9,120,85,88,0,0
+2,1,71,28.5,153,71,102,1,0
+3,2,39,17.0,115,69,56,0,0
+4,2,38,30.4,146,76,68,1,0
+5,2,58,20.6,120,67,76,0,0
+6,1,51,26.1,122,75,86,0,0
+7,2,68,24.0,139,76,108,0,0
+8,2,45,27.5,142,73,58,1,0
+9,2,33,31.5,138,73,103,0,0
+10,2,49,24.0,110,74,87,0,0
+11,2,33,24.2,118,67,87,0,0
+12,1,60,18.9,148,79,75,1,0
+13,2,75,23.9,118,80,86,0,0
+14,2,28,26.6,115,80,97,0,0
+15,1,37,25.5,130,70,92,0,0
+16,2,57,27.1,150,72,108,1,0
+17,1,68,22.7,125,83,80,0,0
+18,1,65,27.1,158,88,87,1,0
+19,2,73,22.9,126,84,91,0,0
+20,2,35,29.8,130,63,106,0,0
+21,1,45,22.0,134,80,94,0,0
+22,1,62,29.2,140,82,99,1,0
+23,1,46,31.7,141,76,111,1,0
+24,2,37,22.6,124,73,73,0,0
+25,2,49,25.9,130,69,93,0,0
+26,2,23,24.9,111,78,76,0,0
+27,1,30,22.3,121,55,67,0,0
+28,1,73,35.2,143,83,115,1,0
+29,2,51,27.1,129,76,74,0,0
+30,2,26,23.3,111,74,58,0,0
+31,2,48,23.7,144,70,78,1,0
+32,2,52,25.3,127,81,97,0,0
+33,1,65,23.5,118,86,96,0,0
+34,1,57,22.0,130,78,102,0,0
+35,2,48,31.6,137,85,99,0,0
+36,1,22,26.1,123,68,90,0,0
+37,2,40,25.0,139,77,92,0,0
+38,1,60,29.9,140,87,85,1,0
+39,2,70,30.7,140,86,100,1,0
+40,1,46,30.8,149,73,87,1,0`
+    : `PlotID,MaizeVariety,Fertilizer,SeasonalRainfall_mm,Soil_pH,SoilNitrogen_mgkg,DiseasePresent,Yield_t_ha
+1,Hybrid_B,Organic,718.1,7.2,32.5,1,4.09
+2,Hybrid_A,None,463.3,5.3,42.3,0,4.77
+3,Hybrid_B,Organic,623.6,5.4,19.5,0,3.84
+4,Local,Organic,543.7,5.7,17.1,0,3.56
+5,Local,NPK,447.5,7.1,43.0,0,2.89
+6,Hybrid_A,NPK,622.4,5.0,18.9,0,5.21
+7,Hybrid_A,NPK,839.4,5.4,44.5,0,5.89
+8,Local,Organic,518.9,6.8,27.4,0,3.97
+9,Hybrid_A,None,797.7,6.7,16.8,0,4.81
+10,Hybrid_B,Organic,690.8,7.3,45.1,0,4.76
+11,Local,NPK,544.1,7.3,26.2,0,4.52
+12,Hybrid_B,Organic,483.3,6.7,31.7,1,3.9
+13,Local,None,598.2,5.1,29.4,0,3.62
+14,Local,NPK,599.9,7.1,34.7,0,3.49
+15,Hybrid_B,Organic,610.2,5.6,46.2,0,4.19
+16,Local,NPK,757.3,5.3,45.0,0,5.14
+17,Hybrid_A,NPK,496.8,6.6,22.9,0,5.17
+18,Hybrid_A,Organic,668.6,7.1,14.3,1,4.41
+19,Local,None,384.5,5.1,22.9,1,3.15
+20,Hybrid_B,NPK,739.8,5.6,42.2,0,4.2
+21,Local,None,411.3,6.9,38.8,0,3.47
+22,Local,None,776.7,6.1,42.5,0,4.5
+23,Hybrid_B,NPK,469.2,5.0,23.3,0,3.86
+24,Hybrid_B,Organic,796.2,5.3,43.4,0,4.94
+25,Local,NPK,778.1,7.0,32.2,0,4.85
+26,Hybrid_A,Organic,661.5,5.6,14.9,1,3.4
+27,Hybrid_A,Organic,760.6,5.3,14.1,0,4.15
+28,Hybrid_A,Organic,787.4,6.5,12.7,0,4.61
+29,Local,NPK,637.5,6.2,36.5,1,4.3
+30,Hybrid_B,None,694.9,6.0,41.6,0,4.84
+31,Local,None,847.6,6.7,43.0,0,4.19
+32,Hybrid_A,NPK,493.4,7.1,15.3,0,5.62
+33,Hybrid_A,NPK,759.5,5.4,27.8,0,5.13
+34,Local,NPK,486.3,6.1,47.3,0,4.32
+35,Hybrid_A,None,393.7,6.1,13.6,0,2.95
+36,Hybrid_B,None,441.3,6.6,46.5,0,5.03
+37,Hybrid_B,None,751.4,5.5,17.9,0,3.97
+38,Hybrid_B,NPK,478.6,6.2,46.5,0,5.1
+39,Hybrid_B,None,452.2,6.7,24.4,0,3.66
+40,Local,Organic,802.8,5.2,45.2,0,4.5`;
+  const rows = raw.split(/\r?\n/).map(line => line.split(','));
+  csvDownload(type === 'health' ? 'Health_Teaching_Data_40_cases.csv' : 'Agriculture_Teaching_Data_40_plots.csv', rows);
+}
+function downloadSyntax(type){
+  const health=`* Health teaching example - SPSS 27.\nFREQUENCIES VARIABLES=Sex Hypertension ElevatedGlucose.\nDESCRIPTIVES VARIABLES=Age BMI SystolicBP DiastolicBP FastingGlucose /STATISTICS=MEAN STDDEV MIN MAX.\nT-TEST GROUPS=Sex(1 2) /VARIABLES=SystolicBP /CRITERIA=CI(.95).\nCROSSTABS /TABLES=Sex BY Hypertension /STATISTICS=CHISQ /CELLS=COUNT EXPECTED ROW.\nCORRELATIONS /VARIABLES=BMI SystolicBP /PRINT=TWOTAIL.`;
+  const agri=`* Agriculture teaching example - SPSS 27.\nFREQUENCIES VARIABLES=MaizeVariety Fertilizer DiseasePresent.\nDESCRIPTIVES VARIABLES=SeasonalRainfall_mm Soil_pH SoilNitrogen_mgkg Yield_t_ha /STATISTICS=MEAN STDDEV MIN MAX.\nONEWAY Yield_t_ha BY Fertilizer /STATISTICS DESCRIPTIVES HOMOGENEITY /POSTHOC=TUKEY ALPHA(.05).\nCORRELATIONS /VARIABLES=SeasonalRainfall_mm Yield_t_ha /PRINT=TWOTAIL.\nREGRESSION /DEPENDENT Yield_t_ha /METHOD=ENTER SeasonalRainfall_mm SoilNitrogen_mgkg /STATISTICS COEFF R ANOVA CI(95).`;
+  const blob=new Blob([type==='health'?health:agri],{type:'text/plain'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=type+'_SPSS27_examples.sps';a.click();URL.revokeObjectURL(url);
+}
+
+function loadMyProgress(){
+ let s;try{s=studentDetails();}catch(e){return;}
+ const box=document.getElementById('myProgressResult');box.innerHTML='<p>Loading...</p>';
+ google.script.run.withSuccessHandler(d=>{
+ if(!d.success){box.textContent=d.message;return;}
+ box.innerHTML=`<h3>Progress summary</h3><p>Lessons opened: <b>${d.lessonsOpened}</b> · Completed: <b>${d.lessonsCompleted}</b> · Quiz attempts: <b>${d.quizAttempts}</b> · Practicals: <b>${d.practicalSubmissions}</b></p><h4>Recent quiz attempts</h4>${d.quizzes.map(q=>`<div class="resource">${escapeHtml(q.moduleName)} — ${q.score}/${q.maxScore} (${q.percentage}%), attempt ${q.attemptNumber}, ${escapeHtml(q.date)}</div>`).join('')||'<p>No quizzes submitted yet.</p>'}<h4>Practical feedback</h4>${d.practicals.map(p=>`<div class="resource"><b>${escapeHtml(p.title)}</b> — ${escapeHtml(p.status)} · ${escapeHtml(p.score)}<br>${escapeHtml(p.feedback||'No feedback yet.')}</div>`).join('')||'<p>No practicals submitted yet.</p>'}`;
+ }).withFailureHandler(e=>box.textContent='Could not load: '+e.message).getStudentProgress(s);
+}
+function loadLecturerDashboard(){
+ const key=document.getElementById('lecturerKey').value.trim(),box=document.getElementById('lecturerDashboardResult');
+ if(!key){alert('Enter lecturer access key.');return;}box.innerHTML='<p>Loading dashboard...</p>';
+ google.script.run.withSuccessHandler(d=>{
+ if(!d.success){box.textContent=d.message;return;}window.lecturerData=d;
+ box.innerHTML=`<div class="cards"><div class="card"><b>Students</b><h2>${d.summary.students}</h2></div><div class="card"><b>Quiz attempts</b><h2>${d.summary.quizAttempts}</h2></div><div class="card"><b>Pending practicals</b><h2>${d.summary.pendingPracticals}</h2></div></div><p><b>Average quiz percentage:</b> ${d.summary.averageQuizPercentage}%</p><button class="button teal" onclick="downloadClassReport()">Download class report CSV</button><h3>Student performance</h3><div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Name</th><th>Registration</th><th>Attempts</th><th>Average %</th><th>Lessons completed</th></tr></thead><tbody>${d.students.map(s=>`<tr><td>${escapeHtml(s.name)}</td><td>${escapeHtml(s.reg)}</td><td>${s.attempts}</td><td>${s.average}</td><td>${s.completedLessons}</td></tr>`).join('')}</tbody></table></div><h3>Practical submissions</h3>${d.practicals.map(p=>`<div class="resource"><b>${escapeHtml(p.title)}</b><p>${escapeHtml(p.name)} · ${escapeHtml(p.reg)} · ${escapeHtml(p.dataset)}</p><p>${escapeHtml(p.findings)}</p><label>Status <select id="status_${p.row}"><option ${p.status==='Pending'?'selected':''}>Pending</option><option ${p.status==='Reviewed'?'selected':''}>Reviewed</option><option ${p.status==='Resubmit'?'selected':''}>Resubmit</option></select></label> <label>Score /100 <input id="score_${p.row}" type="number" min="0" max="100" value="${escapeAttr(p.score)}" style="width:80px"></label><textarea id="feedback_${p.row}" placeholder="Lecturer feedback" style="display:block;width:100%;min-height:70px;margin:8px 0">${escapeHtml(p.feedback)}</textarea><button class="button" onclick="savePracticalReview(${p.row})">Save evaluation</button></div>`).join('')||'<p>No practical submissions yet.</p>'}`;
+ }).withFailureHandler(e=>box.textContent='Dashboard error: '+e.message).getLecturerDashboard(key);
+}
+function savePracticalReview(row){
+ const key=document.getElementById('lecturerKey').value.trim();
+ google.script.run.withSuccessHandler(r=>{alert(r.message);loadLecturerDashboard();}).withFailureHandler(e=>alert(e.message))
+ .updatePracticalReview(key,row,document.getElementById('status_'+row).value,document.getElementById('feedback_'+row).value,document.getElementById('score_'+row).value);
+}
+function downloadClassReport(){
+ const d=window.lecturerData;if(!d)return;const rows=[['Student','Registration','Quiz attempts','Average percentage','Lessons completed']];
+ d.students.forEach(s=>rows.push([s.name,s.reg,s.attempts,s.average,s.completedLessons]));
+ csvDownload('SPSS_Class_Performance_Report.csv',rows);
+}
+
+renderNavigation();renderQuiz();
+</script>
+</body>
+</html>
